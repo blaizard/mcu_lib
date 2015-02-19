@@ -1,0 +1,4 @@
+output/
+database/
+*.pyc
+*.log

@@ -1,0 +1,53 @@
+#!/bin/bash
+
+EXTRA_ARGS=
+ANALYZE=0
+
+for i in $*
+do
+	case $i in
+	-w|--write)
+		EXTRA_ARGS="${EXTRA_ARGS} -w"
+		echo "Write mode enabled"
+		;;
+	-u|--unsafe)
+		EXTRA_ARGS="${EXTRA_ARGS} -u"
+		echo "Unsafe mode, use at your own risks"
+		;;
+	-a|--analyze)
+		ANALYZE=1
+		;;
+	*)
+		echo "Unknown argument - escape"
+		exit
+		;;
+	esac
+done
+
+if [ "${ANALYZE}" -eq "1" ]
+then
+
+	echo "Analyze the database log"
+	python update.py nop --analyze ${EXTRA_ARGS}
+
+else
+
+	echo "Fetching data for \`STMicroelectronics'"
+	python fetch_lib.py st -v0 ${EXTRA_ARGS}
+	echo "Fetching data for \`Texas Instruments'"
+	python fetch_lib.py ti -v0 ${EXTRA_ARGS}
+	echo "Fetching data for \`Freescale'"
+	python fetch_lib.py freescale -v0 ${EXTRA_ARGS}
+	echo "Fetching data for \`Microchip'"
+	python fetch_lib.py microchip -v0 ${EXTRA_ARGS}
+	echo "Fetching data for \`NXP'"
+	python fetch_lib.py nxp -v0 ${EXTRA_ARGS}
+	echo "Fetching data for \`Atmel'"
+	python fetch_lib.py atmel -v0 ${EXTRA_ARGS}
+	echo "Fetching data for \`Silicon Labs'"
+	python fetch_lib.py siliconlabs -v0 ${EXTRA_ARGS}
+
+	echo "Clean-up the database"
+	python update.py nop -u --cleanup ${EXTRA_ARGS}
+
+fi

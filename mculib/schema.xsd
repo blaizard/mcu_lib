@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:annotation>
+		<xs:documentation>
+			This document provides specification for the XML that describes a MCU.
+		</xs:documentation>
+	</xs:annotation>
+
+	<xs:element name="mculib">
+		<xs:annotation>
+			<xs:documentation>
+				Top level element for any file that should be parsed and added to the mculib.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice minOccurs="1" maxOccurs="unbounded">
+				<xs:element ref="mcu" minOccurs="0"/>
+			</xs:choice>
+			<xs:attribute name="xmlversion" use="required">
+				<xs:annotation>
+					<xs:documentation>
+						The version of the XML used.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="mcu">
+		<xs:annotation>
+			<xs:documentation>
+				Top level element for any MCU definition.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice minOccurs="1" maxOccurs="unbounded">
+				<xs:element ref="cpu" minOccurs="0"/>
+			</xs:choice>
+			<xs:attribute name="name" use="required">
+				<xs:annotation>
+					<xs:documentation>
+						The name of the microcontroller.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="cpu">
+		<xs:annotation>
+			<xs:documentation>
+				The cpu element is used for specifying which CPU architecture is used.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="arch" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>
+						Architecture name for this CPU.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" xmlns:og="http://ogp.me/ns#">
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+		<meta http-equiv="content-language" content="en" />
+		<title>MCU Database</title>
+		<script type="text/javascript" src="script.js"></script>
+		<script type="text/javascript" src="parametric_data.js"></script>
+		<script type="text/javascript" src="parametric_table.js"></script>
+		<script type="text/javascript" src="parametric_table_edit.js"></script>
+		<script type="text/javascript" src="parametric_table_profile.js"></script>
+		<script type="text/javascript" src="availability.js"></script>
+		<script type="text/javascript" src="jquery-1.8.2.min.js"></script>
+		<script type="text/javascript" src="jquery-ui.min.js"></script>
+		<script type="text/javascript" src="jquery.tablesorter.min.js"></script>
+		<script type="text/javascript" src="jquery.contextmenu.js"></script>
+		<script type="text/javascript" src="jquery.panel.js"></script>
+		<link href="style.css" rel="stylesheet" type="text/css"/>
+		<link href="jquery.ui.slider.min.css" rel="stylesheet" type="text/css"/>
+		<link href="jquery.contextmenu.css" rel="stylesheet" type="text/css"/>
+		<link href="jquery.panel.css" rel="stylesheet" type="text/css"/>
+	</head>
+	<body>
+		<div id="body">
+			<div id="tabs">
+				<ul>
+					<li><a href="#parametric">Parametric Table</a></li>
+					<li><a href="#comparison">Comparison View</a></li>
+					<li><a href="#chart">Chart View</a></li>
+					<li><a href="#submit">Submit</a></li>
+				</ul>
+				<div id="parametric" class="content">
+					<div class="group">
+						<div class="group_packs">
+						</div>
+						<input class="loading_trigger" type="button" value="Load" onclick="javascript:process('table_setup');" />
+					</div>
+					<div class="group group_actions">
+						Profile:
+						<select id="id_table_profile">
+							<option value="normal">Normal</option>
+							<option value="full">Full</option>
+						</select>
+						<input id="id_group" class="loading_trigger" type="button" value="Group Selection" onclick="javascript:parametric_table_group_selection('#id_table');" />
+						<input id="id_group_by" class="loading_trigger" type="button" value="Group by" onclick="javascript:group_by($('#id_group_by_category').val());" />
+						<select id="id_group_by_category">
+							<option value="family">Sub-Families</option>
+							<option value="topfamily">Families</option>
+							<option value="manufacturer">Manufacturer</option>
+							<option value="status">Status</option>
+							<option value="cpu">Core</option>
+							<option value="cpuarch">Architecture</option>
+						</select>
+						<input type="checkbox" id="id_highlight_similarities" value="1" checked />Highlight Hardware Similarities
+					</div>
+					<div id="id_table" style="width: 100%; height: 100%;"></div>
+					<div id="id_information">
+						Nb devices: <div id="id_nb_devices">0</div>, Nb devices selected: <div id="id_nb_selected">0</div>
+					</div>
+				</div>
+				<div id="comparison" class="content">
+  					<div>
+						Threshold:
+						<div id="id_compare_threshold" style="width: 200px; display: inline-block;"></div>
+						&nbsp;Hide Empty Rows
+						<input type="checkbox" id="id_hide_empty_rows" value="1" onclick="javascript:compare_view();" checked />
+					</div>
+					<br />
+					<table id="id_comparison_table" class="tablesorter" style="clear: both;">
+					</table>
+				</div>
+				<div id="chart" class="content">
+				</div>
+				<div id="submit" class="content">
+					<h1>How confident are you on this data?</h1>
+					<p>
+						<input onclick="javascript:update_changes();" type="radio" name="trustability" value="5" /> Might not be correct (can be over-written by the automatic parser).<br>
+						<input onclick="javascript:update_changes();" type="radio" name="trustability" value="3" /> I would like a tierce person to double check my values.<br>
+						<input onclick="javascript:update_changes();" type="radio" name="trustability" value="1" checked /> 100% sure! (I double checked these values in the datasheet).
+					</p>
+					<h1>What is your name?</h1>
+					<p>
+						<input onkeyup="javascript:update_changes();" id="id_source" type="text" value="" />
+					</p>
+					<h1>Copy the following and send it!</h1>
+					<textarea style="width: 700px; height: 250px;">
+					</textarea>
+				</div>
+
+			</div>
+		</div>
+
+		<script type="text/javascript">
+		<!--
+			// Fill the main table
+			$(document).ready(function() {
+				$('#tabs').tabs({
+					'select': on_tab_change
+				});
+				$("#id_compare_threshold").slider({
+					value: 0.3,
+					min: 0,
+					max: 1,
+					step: 0.01,
+					slide: function(event, ui) {
+						compare_highlight();
+					}
+				});
+				// Initialize the module
+				script_init();
+			});
+		//-->
+		</script>
+
+	</body>
+</html>
