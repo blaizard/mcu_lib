@@ -122,6 +122,21 @@ def to_number(string):
 		return float(string.replace(",", "."))
 	return None
 
+def to_boolean(string):
+	if string in YES_VALUES:
+		return True
+	if string in NO_VALUES:
+		return False
+	if string in EMPTY_VALUES:
+		return None
+	if is_number(string):
+		if to_number(string) > 0:
+			return True
+		return False
+	if string:
+		return True
+	return None
+
 """
 Different strategies when merging data together
 """

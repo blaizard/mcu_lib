@@ -6,6 +6,8 @@ import math
 import re
 
 class CategoryMemory(GenericCategory):
+	config_multiple_categories = True
+	config_merge_strategy = MERGE_STRATEGY_MAX
 	memory_type = ""
 
 	@classmethod
@@ -30,8 +32,6 @@ class CategoryMemory(GenericCategory):
 			self.set_value(self.format_value(str(value)))
 
 class CategoryMemoryFlash(CategoryMemory):
-	config_multiple_categories = True
-	config_merge_strategy = MERGE_STRATEGY_MAX
 
 	def get_category_regexpr(self):
 		return r".*\b(flash|program.*memory)\b.*"

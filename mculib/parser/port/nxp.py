@@ -108,27 +108,24 @@ class NXP(NXPCommon):
 	specific_options_list = [
 		# All
 		{'display': 'All', 'id': 'all', 'data': [{'url': 'http://www.nxp.com/parametrics/psdata/?p=1&s=0&c=&rpp=99999&fs=0&sc=&so=&es=&type=initial&i=50809'}]},
-		# Cortex-M0/M0+
-		{'display': 'Cortex-M0/M0+', 'id': 'cm0', 'data': [{'url': 'http://www.nxp.com/parametrics/psdata/?p=1&s=0&c=&rpp=99999&fs=0&sc=&so=&es=&type=initial&i=71391'}]},
 		# Cortex-M0
 		{'display': 'LPC800', 'id': 'lpc800', 'data': [{'url': 'http://www.nxp.com/parametrics/psdata/?p=1&s=0&c=&rpp=99999&fs=0&sc=&so=&es=&type=initial&i=71785'}], 'custom': {'CategoryDeviceTopFamily': 'lpc800', 'CategoryCPUCore': 'cm0+'}},
 		{'display': 'LPC1100', 'id': 'lpc1100', 'data': [{'url': 'http://www.nxp.com/parametrics/psdata/?p=1&s=0&c=&rpp=99999&fs=0&sc=&so=&es=&type=initial&i=1392389687150'}], 'custom': {'CategoryDeviceTopFamily': 'lpc1100'}},
 		{'display': 'LPC1200', 'id': 'lpc1200', 'data': [{'url': 'http://www.nxp.com/parametrics/psdata/?p=1&s=0&c=&rpp=99999&fs=0&sc=&so=&es=&type=initial&i=71514'}], 'custom': {'CategoryDeviceTopFamily': 'lpc1200'}},
 		# Cortex-M3
-		{'display': 'Cortex-M3', 'id': 'cm3', 'data': [{'url': 'http://www.nxp.com/parametrics/psdata/?p=1&s=0&c=&rpp=100&fs=0&sc=&so=&es=&type=initial&i=56890'}], 'custom': {'CategoryCPUCore': 'cm3'}},
 		{'display': 'LPC1300', 'id': 'lpc1300', 'data': [{'url': 'http://www.nxp.com/parametrics/psdata/?p=1&s=0&c=&rpp=99999&fs=0&sc=&so=&es=&type=initial&i=1403790687302'}], 'custom': {'CategoryDeviceTopFamily': 'lpc1300', 'CategoryCPUCore': 'cm3'}},
 		{'display': 'LPC1500', 'id': 'lpc1500', 'data': [{'url': 'http://www.nxp.com/parametrics/psdata/?p=1&s=0&c=&rpp=99999&fs=0&sc=&so=&es=&type=initial&i=1403790713448'}], 'custom': {'CategoryDeviceTopFamily': 'lpc1500', 'CategoryCPUCore': 'cm3'}},
 		{'display': 'LPC1700', 'id': 'lpc1700', 'data': [{'url': 'http://www.nxp.com/parametrics/psdata/?p=1&s=0&c=&rpp=99999&fs=0&sc=&so=&es=&type=initial&i=1403790745385'}], 'custom': {'CategoryDeviceTopFamily': 'lpc1700', 'CategoryCPUCore': 'cm3'}},
 		{'display': 'LPC1800', 'id': 'lpc1800', 'data': [{'url': 'http://www.nxp.com/parametrics/psdata/?p=1&s=0&c=&rpp=99999&fs=0&sc=&so=&es=&type=initial&i=1403790776032'}], 'custom': {'CategoryDeviceTopFamily': 'lpc1800', 'CategoryCPUCore': 'cm3'}},
+		{'display': 'LPC2100/200/300/400', 'id': 'lpc210_200_300_400', 'data': [{'url': 'http://www.nxp.com/parametrics/psdata/?p=1&s=0&c=&rpp=99999&fs=0&sc=&so=&es=&type=initial&i=71580'}]},
+		{'display': 'LPC2900', 'id': 'lpc2900', 'data': [{'url': 'http://www.nxp.com/parametrics/psdata/?p=1&s=0&c=&rpp=99999&fs=0&sc=&so=&es=&type=initial&i=71571'}]},
+		{'display': 'LPC3100/200', 'id': 'lpc3100_200', 'data': [{'url': 'http://www.nxp.com/parametrics/psdata/?p=1&s=0&c=&rpp=99999&fs=0&sc=&so=&es=&type=initial&i=71572'}]},
 		# Cortex-M4
-		{'display': 'Cortex-M4', 'id': 'cm4', 'data': [{'url': 'http://www.nxp.com/parametrics/psdata/?p=1&s=0&c=&rpp=100&fs=0&sc=&so=&es=&type=initial&i=71496'}], 'custom': {'CategoryCPUCore': 'cm4'}},
 		{'display': 'LPC4000', 'id': 'lpc4000', 'data': [{'url': 'http://www.nxp.com/parametrics/psdata/?p=1&s=0&c=&rpp=99999&fs=0&sc=&so=&es=&type=initial&i=1403790399405'}], 'custom': {'CategoryDeviceTopFamily': 'lpc4000', 'CategoryCPUCore': 'cm4'}},
 		{'display': 'LPC4300', 'id': 'lpc4300', 'data': [{'url': 'http://www.nxp.com/parametrics/psdata/?p=1&s=0&c=&rpp=99999&fs=0&sc=&so=&es=&type=initial&i=1403790133078'}], 'custom': {'CategoryDeviceTopFamily': 'lpc4300', 'CategoryCPUCore': 'cm4'}},
 		{'display': 'LPC54100', 'id': 'lpc54100', 'data': [{'url': 'http://www.nxp.com/parametrics/psdata/?p=1&s=0&c=&rpp=100&fs=0&sc=&so=&es=&type=initial&i=1414576688124'}], 'custom': {'CategoryDeviceTopFamily': 'lpc54100', 'CategoryCPUCore': 'cm4f'}},
-		# ARM7
-		{'display': 'ARM7', 'id': 'arm7', 'data': [{'url': 'http://www.nxp.com/parametrics/psdata/?p=1&s=0&c=&rpp=100&fs=0&sc=&so=&es=&type=initial&i=45994'}]},
-		# ARM9
-		{'display': 'ARM9', 'id': 'arm9', 'data': [{'url': 'http://www.nxp.com/parametrics/psdata/?p=1&s=0&c=&rpp=100&fs=0&sc=&so=&es=&type=initial&i=53962'}]},
+		{'display': 'LH7', 'id': 'lpc3100_200', 'data': [{'url': 'http://www.nxp.com/parametrics/psdata/?p=1&s=0&c=&rpp=99999&fs=0&sc=&so=&es=&type=initial&i=71572'}]},
+
 		# 8-/16-bit Legacy
 		{'display': 'LPC900', 'id': 'lpc900', 'data': [{'url': 'http://www.nxp.com/parametrics/psdata/?p=1&s=0&c=&rpp=100&fs=0&sc=&so=&es=&type=initial&i=71590'}], 'custom': {'CategoryDeviceTopFamily': 'lpc900', 'CategoryLegacy': 'yes'}},
 		{'display': 'LPC700', 'id': 'lpc700', 'data': [{'url': 'http://www.nxp.com/parametrics/psdata/?p=1&s=0&c=&rpp=100&fs=0&sc=&so=&es=&type=initial&i=71592'}], 'custom': {'CategoryDeviceTopFamily': 'lpc700', 'CategoryLegacy': 'yes'}},

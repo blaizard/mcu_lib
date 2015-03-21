@@ -2,6 +2,7 @@
 # -*- coding: iso-8859-1 -*-
 
 import re
+import json
 
 from mculib.parser.generic import *
 from mculib.parser.deep import *
@@ -40,80 +41,79 @@ class SiliconLabsCommon(GenericParserPort):
 class SiliconLabsParser(GenericParser):
 	"""
 	Data have the following format:
-		<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
-			<s:Body>
-				<GetMCUItemsResponse xmlns="http://schema.silabs.com/webservices/2011/01">
-					<GetMCUItemsResult xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
-						<MCUItem>
-							<MHz>20</MHz>
-							<McuCore>8051</McuCore>
-							<FlashBytes>32 kB</FlashBytes>
-							<RamBytes>0.25</RamBytes>
-							<DigitalPort>32</DigitalPort>
-							<Communications>I2C; SPI; UART</Communications>
-							<PcaChannels>5</PcaChannels>
-							<Timers16Bit>4</Timers16Bit>
-							<InternalOsc>±20%</InternalOsc>
-							<Adc1>12-bit, 8-ch., 100 ksps</Adc1>
-							<Adc2>—</Adc2>
-							<Dac>12-bit, 2-ch.</Dac>
-							<TempSensor>true</TempSensor>
-							<DebugInterface>JTAG</DebugInterface>
-							<Other>—</Other>
-							<McuPackage>TQFP64</McuPackage>
-							<DevKitLink>&lt;a href="/products/mcu/Pages/C8051F005DK.aspx"&gt;C8051F005DK.aspx&lt;/a&gt;</DevKitLink>
-							<DevKit>C8051F005DK</DevKit>
-							<DataSheetLink>&lt;a href="/Support%20Documents/TechnicalDocs/C8051F0xx.pdf"&gt;C8051F0xx.pdf&lt;/a&gt;</DataSheetLink>
-							<DataShortLink>&lt;a href="/Support%20Documents/TechnicalDocs/C8051F000-Short.pdf"&gt;C8051F000_short.pdf&lt;/a&gt;</DataShortLink>
-							<ErrataLink/>
-							<Vref>true</Vref>
-							<Comparators>2</Comparators>
-							<Alternative/>
-							<AECQ100>false</AECQ100>
-							<CapSense>false</CapSense>
-							<PartNumber>C8051F000</PartNumber>
-							<PartNumberLink>&lt;a href="/products/mcu/mixed-signalmcu/Pages/C8051F00x1x.aspx"&gt;C8051F0xx.aspx&lt;/a&gt;</PartNumberLink>
-							<OrderPartNumber>C8051F000-GQ</OrderPartNumber>
-							<SampleAvailable>true</SampleAvailable>
-							<BuyAvailable>true</BuyAvailable>
-							<ReleaseDate>0001-01-01T00:00:00</ReleaseDate>
-							<PackageType>TQFP64</PackageType>
-							<PackageSize>12x12 mm</PackageSize>
-							<Automotive>false</Automotive>
-						</MCUItem>
-						<MCUItem>
-							...
-						</MCUItem>
-					</GetMCUItemsResult>
-				</GetMCUItemsResponse>
-			</s:Body>
-		</s:Envelope>
+		[
+			{
+				"MHz":"20",
+				"McuCore":"8051",
+				"FlashBytes":"32 kB",
+				"RamBytes":"0.25",
+				"DigitalPort":"32",
+				"Communications":"I2C; SPI; UART",
+				"PcaChannels":"5",
+				"Timers16Bit":"4",
+				"InternalOsc":"&#177;20%",
+				"Adc1":"12-bit, 8-ch., 100 ksps",
+				"Adc2":"—",
+				"Dac":"12-bit, 2-ch.",
+				"TempSensor":true,
+				"DebugInterface":"JTAG",
+				"Other":"—",
+				"McuPackage":"QFP64",
+				"DevKitLink":"&lt;a href=&quot;\/products\/mcu\/Pages\/C8051F005DK.aspx&quot;&gt;C8051F005DK.aspx&lt;\/a&gt;",
+				"DevKit":"C8051F005DK",
+				"DataSheetLink":"&lt;a href=&quot;\/Support%20Documents\/TechnicalDocs\/C8051F0xx.pdf&quot;&gt;C8051F0xx.pdf&lt;\/a&gt;",
+				"DataShortLink":"&lt;a href=&quot;\/Support%20Documents\/TechnicalDocs\/C8051F000-Short.pdf&quot;&gt;C8051F000_short.pdf&lt;\/a&gt;",
+				"ErrataLink":"",
+				"Vref":true,
+				"Comparators":"2",
+				"Alternative":"",
+				"AECQ100":false,
+				"CapSense":false,
+				"PartNumber":"C8051F000",
+				"PartNumberLink":"&lt;a href=&quot;\/products\/mcu\/8-bit\/c8051f00x-f01x\/pages\/c8051f00x-f01x.aspx&quot;&gt;c8051f00x-f01x.aspx&lt;\/a&gt;",
+				"OrderPartNumber":"C8051F000-GQ",
+				"SampleAvailable":true,
+				"BuyAvailable":true,
+				"ReleaseDate":"\/Date(-62135575200000-0600)\/",
+				"PackageType":"QFP64",
+				"PackageSize":"10x10 mm",
+				"Automotive":false,
+				"Footnotes":"",
+				"DevicePageURL":"\/products\/mcu\/8-bit\/c8051f00x-f01x\/pages\/\/C8051F000.aspx"
+		},
+		...
+	]
 	"""
 
 	def parse_deep(self, data):
 		data = data.encode('ascii', 'replace')
-		data = BeautifulSoup(data)
-		for index, d in enumerate(data.find_all("mcuitem")):
+		data = json.loads(data)
+		# Loop through each devices
+		for d in data:
 			self.element_create()
-			for i, c in enumerate(d.find_all(True)):
-				self.element_add_value(c.text, c.name)
+			# Loop through each categories
+			for i, cat in enumerate(d):
+				self.element_add_value(str(d[cat]), str(cat))
 
 		# Add custom category mapping
-		self.category_mapping_add("mhz", "cpu speed (MHz)")
-		self.category_mapping_add("mcucore", "cpu")
-		self.category_mapping_add("flashbytes", "flash (kb)")
-		self.category_mapping_add("rambytes", "ram (kb)")
-		self.category_mapping_add("digitalport", "i/o")
-		self.category_mapping_add("adc1", "adc 1")
-		self.category_mapping_add("adc2", "adc 2")
-		self.category_mapping_add("communications", "digital")
-		self.category_mapping_add("timers16bit", "16-bit timers")
-		self.category_mapping_add("internalosc", "oscillator accuracy")
-		self.category_mapping_add("tempsensor", "temperature sensor")
-		self.category_mapping_add("mcupackage", "package")
-		self.category_mapping_add("datasheetlink", "datasheet link")
-		self.category_mapping_add("orderpartnumber", "")
-		self.category_mapping_add("partnumber", "part number")
+		self.category_mapping_add("FlashBytes", "flash")
+		self.category_mapping_add("RamBytes", "ram (kb)")
+		self.category_mapping_add("Communications", "serial")
+		self.category_mapping_add("Timers16Bit", "16-bit timer")
+		self.category_mapping_add("Adc1", "adc 1")
+		self.category_mapping_add("Adc2", "adc 2")
+		self.category_mapping_add("TempSensor", "temperature sensor")
+		self.remove_categories("DataSheetLink")
+		self.remove_categories("DevicePageURL")
+		self.remove_categories("PartNumberLink")
+		self.remove_categories("DataShortLink")
+		#self.category_mapping_add("communications", "digital")
+		#self.category_mapping_add("timers16bit", "16-bit timers")
+		#self.category_mapping_add("internalosc", "oscillator accuracy")
+		#self.category_mapping_add("tempsensor", "temperature sensor")
+		#self.category_mapping_add("datasheetlink", "datasheet link")
+		#self.category_mapping_add("orderpartnumber", "")
+		#self.category_mapping_add("partnumber", "part number")
 
 	def load(self, data, options = {}):
 		if options.has_key('data'):
@@ -128,19 +128,7 @@ class SiliconLabs(SiliconLabsCommon):
 			'data': {
 				'parser': SiliconLabsParser,
 				'encoding': 'utf-8',
-				'url': 'http://www.silabs.com/_vti_bin/ParametricSearchLists.svc',
-				'xml': "<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">"
-						"<SOAP-ENV:Body>"
-							"<i0:GetMCUItems xmlns:i0=\"http://schema.silabs.com/webservices/2011/01\">"
-								"<i0:UserPassword>P@ssw0rd</i0:UserPassword>"
-								"<i0:UserId>flashLists</i0:UserId>"
-							"</i0:GetMCUItems>"
-						"</SOAP-ENV:Body>"
-					"</SOAP-ENV:Envelope>",
-				'headers': {
-					'soapaction': 'http://schema.silabs.com/webservices/2011/01/ParametricSearchListsServiceContract/GetMCUItems',
-					'Content-Type': 'text/xml; charset=utf-8'
-				}
+				'url': 'http://www.silabs.com/_vti_bin/ParametricSearchData.svc/getversion/GetMCUItems?UserId=flashLists&UserPassword=P@ssw0rd',
 			},
 		}
 

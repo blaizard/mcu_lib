@@ -83,7 +83,7 @@ function parametric_table_create_normal(container, data)
 			'touchch', 'lcd', 'graph', 'camera',
 			'crypto', 'rng', 'tamper',
 			'ac', 'gain', 'adc', 'dac',
-			'pin', 'io5v', 'iostrength', 'vmin', 'vmax', 'tmin', 'tmax', 'package', 'launch',
+			'pin', 'io5v', 'iostrength', 'vmin', 'vmax', 'tmin', 'tmax', 'packages', 'launch',
 		],
 		'custom_category': [
 		{

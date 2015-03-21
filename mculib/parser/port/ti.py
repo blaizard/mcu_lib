@@ -153,7 +153,7 @@ class TI(TICommon):
 				{'url': 'http://www.ti.com/wsapi/paramdata/family/342/criteria?lang=en&output=json'}
 			]
 		},
-			# Ultra-low Power
+		# Ultra-low Power
 		{'display': 'Ultra-low Power', 'id': 'ulp', 'data': [
 				{'url': 'http://www.ti.com/wsapi/paramdata/family/3274/results?lang=en&output=json'},
 				{'url': 'http://www.ti.com/wsapi/paramdata/family/3274/criteria?lang=en&output=json'}
@@ -184,7 +184,7 @@ class TI(TICommon):
 				{'url': 'http://www.ti.com/wsapi/paramdata/family/1997/criteria?lang=en&output=json'}
 			]
 		},
-			# Low Power + Performance
+		# Low Power + Performance
 		{'display': 'Low Power + Performance', 'id': 'ulp_perf', 'data': [
 				{'url': 'http://www.ti.com/wsapi/paramdata/family/3275/results?lang=en&output=json'},
 				{'url': 'http://www.ti.com/wsapi/paramdata/family/3275/criteria?lang=en&output=json'}
@@ -195,15 +195,9 @@ class TI(TICommon):
 				{'url': 'http://www.ti.com/wsapi/paramdata/family/1615/criteria?lang=en&output=json'}
 			]
 		},
-			# Security + Communications
-		{'display': 'Security + Communications', 'id': 'crypto_com', 'data': [
-				{'url': 'http://www.ti.com/wsapi/paramdata/family/3276/results?lang=en&output=json'},
-				{'url': 'http://www.ti.com/wsapi/paramdata/family/3276/criteria?lang=en&output=json'}
-			]
-		},
-		{'display': 'RF430', 'id': 'rf430', 'data': [
-				{'url': 'http://www.ti.com/wsapi/paramdata/family/1663/results?lang=en&output=json'},
-				{'url': 'http://www.ti.com/wsapi/paramdata/family/1663/criteria?lang=en&output=json'}
+		{'display': 'MSP432P4x', 'id': 'msp432p4x', 'data': [
+				{'url': 'http://www.ti.com/wsapi/paramdata/family/3318/results?lang=en&output=json'},
+				{'url': 'http://www.ti.com/wsapi/paramdata/family/3318/criteria?lang=en&output=json'}
 			]
 		},
 
@@ -225,7 +219,7 @@ class TI(TICommon):
 			}
 		},
 
-		{'display': 'Piccolo F2802x/3x/5x/6x MCUs', 'id': 'c28x_piccolo', 'data': [
+		{'display': 'Piccolo F2802x/3x/5x/6x/7x MCUs', 'id': 'c28x_piccolo', 'data': [
 				{'url': 'http://www.ti.com/wsapi/paramdata/family/919/results?lang=en&output=json'},
 				{'url': 'http://www.ti.com/wsapi/paramdata/family/919/criteria?lang=en&output=json'}
 			],
@@ -309,5 +303,37 @@ class TI(TICommon):
 				'CategoryDeviceTopFamily': 'hercules',
 				'CategoryDeviceFamily': 'tms470m'
 			}
+		},
+
+		# Wireless
+		{'display': 'Wireless', 'id': 'wireless', 'data': [
+				{'url': 'http://www.ti.com/wsapi/paramdata/family/3212/results?lang=en&output=json'},
+				{'url': 'http://www.ti.com/wsapi/paramdata/family/3212/criteria?lang=en&output=json'}
+			]
+		},
+		{'display': 'RF430', 'id': 'rf430', 'data': [
+				{'url': 'http://www.ti.com/wsapi/paramdata/family/1663/results?lang=en&output=json'},
+				{'url': 'http://www.ti.com/wsapi/paramdata/family/1663/criteria?lang=en&output=json'}
+			]
+		},
+		{'display': 'CC430', 'id': 'cc430', 'data': [
+				{'url': 'http://www.ti.com/wsapi/paramdata/family/3314/results?lang=en&output=json'},
+				{'url': 'http://www.ti.com/wsapi/paramdata/family/3314/criteria?lang=en&output=json'}
+			]
+		},
+		{'display': 'SimpleLink CC1x', 'id': 'simplelinkcc1x', 'data': [
+				{'url': 'http://www.ti.com/wsapi/paramdata/family/3315/results?lang=en&output=json'},
+				{'url': 'http://www.ti.com/wsapi/paramdata/family/3315/criteria?lang=en&output=json'}
+			]
+		},
+		{'display': 'SimpleLink CC2x', 'id': 'simplelinkcc2x', 'data': [
+				{'url': 'http://www.ti.com/wsapi/paramdata/family/3316/results?lang=en&output=json'},
+				{'url': 'http://www.ti.com/wsapi/paramdata/family/3316/criteria?lang=en&output=json'}
+			]
+		},
+		{'display': 'SimpleLink CC3x', 'id': 'simplelinkcc3x', 'data': [
+				{'url': 'http://www.ti.com/wsapi/paramdata/family/3317/results?lang=en&output=json'},
+				{'url': 'http://www.ti.com/wsapi/paramdata/family/3317/criteria?lang=en&output=json'}
+			]
 		},
 	]

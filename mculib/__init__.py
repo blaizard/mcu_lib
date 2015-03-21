@@ -23,8 +23,8 @@ from mculib.database import *
 class Env(MCULibClass):
 	database_path = "database"
 	template_path = "resources/templates"
-	proxy = {'http': 'http://squid.norway.atmel.com:3128', 'https': 'http://squid.norway.atmel.com:3128'}
-	#proxy = {}
+#	proxy = {'http': 'http://squid.norway.atmel.com:3128', 'https': 'http://squid.norway.atmel.com:3128'}
+	proxy = {}
 	source = None
 	trustability = TRUSTABILITY_AUTO
 	force = False

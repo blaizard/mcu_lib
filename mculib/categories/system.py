@@ -539,7 +539,7 @@ class CategoryPackage(GenericMultiListCategory):
 		return r".*\b(package|packages)\b.*"
 
 	def get_category_regexpr_exclude(self):
-		return [r".*(temperature|version).*"]
+		return [r".*(temperature|version|carrier).*"]
 
 	def parse(self, string):
 
