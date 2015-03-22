@@ -1557,6 +1557,14 @@ class Database(MCULibClass):
 
 		self.info("Cleaning-up the database for %i device(s)." % (len(mcu_list)), 1)
 
+		# Check if the required categories are there
+		category_list = ["CategoryDeviceName", "CategoryDeviceManufacturer", "CategoryDeviceTopFamily", "CategoryDeviceFamily", "CategoryMemoryFlash", "CategoryMemorySRAM", "CategoryCPUCore", "CategoryPin"]
+		self.info("Make sure the categories %s are present." % (", ".join(category_list)), 2)
+		for mcu in mcu_list:
+			for category in category_list:
+				if self.get_parameter(mcu, category) == None:
+					self.warning("`%s' is missing the parameter `%s'" % (self.get_item_param_value(mcu, "CategoryDeviceName"), category))
+
 		# 0. Make sure the translation table is applied to all categories
 		category_translation = [c for c in get_category_list() if len(c.config_translation_table) > 0]
 		self.info("Apply translation table in %s." % (", ".join([c.to_param() for c in category_translation])), 2)

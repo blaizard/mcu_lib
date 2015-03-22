@@ -23,6 +23,7 @@ def get_category_list():
 		CategoryDeviceManufacturer,
 		CategoryDeviceTopFamily,
 		CategoryDeviceFamily,
+		CategoryFamilyDescription,
 		CategoryDeviceStatus,
 		CategoryProcess,
 		CategoryBus,
@@ -167,6 +168,12 @@ def get_parametric_categories(param = None, strict = True):
 				'category': 'ID',
 				'display': 'Sub-Family',
 				'class': CategoryDeviceFamily
+		},
+		{
+				'id': 'description',
+				'category': 'ID',
+				'display': 'Description',
+				'class': CategoryFamilyDescription
 		},
 		{
 				'id': 'status',

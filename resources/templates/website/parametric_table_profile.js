@@ -73,7 +73,7 @@ function parametric_table_create_normal(container, data)
 
 	var options = {
 		'show_only': [
-			'name', 'datasheet', 'manufacturer', 'topfamily', 'family',
+			'name', 'datasheet', 'manufacturer', 'topfamily', 'family', 'description',
 			'cpu', 'cpu2', 'cpuspeed', 'cpuarch', 'dsp', 'fpu', 'hwmul', 'hwdiv', 'dma',
 			'memflash', 'memfram', 'memsram', 'memeeprom', 'cache', 'dualbank',
 			'reg', 'voltagescaling', 'por', 'bod', 'uniqueid',

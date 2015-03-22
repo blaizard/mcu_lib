@@ -159,6 +159,8 @@ class CategoryDeviceManufacturer(GenericCategory):
 		return [r".*(product|device|part).*(manufacturer).*", r"^(manufacturer?)$"]
 
 class CategoryDeviceFamily(GenericCategory):
+	config_group_master = True
+	config_group_path = "common/family"
 
 	@classmethod
 	def get_type(cls):
@@ -171,6 +173,9 @@ class CategoryDeviceFamily(GenericCategory):
 		# Remove some words
 		string = re.sub(r"\b(series?|family|families)\b", "", string.lower())
 		self.set_value(string)
+
+class CategoryFamilyDescription(GenericCategory):
+	config_group = CategoryDeviceFamily
 
 class CategoryDeviceTopFamily(GenericCategory):
 
