@@ -124,8 +124,6 @@ class NXP(NXPCommon):
 		{'display': 'LPC4000', 'id': 'lpc4000', 'data': [{'url': 'http://www.nxp.com/parametrics/psdata/?p=1&s=0&c=&rpp=99999&fs=0&sc=&so=&es=&type=initial&i=1403790399405'}], 'custom': {'CategoryDeviceTopFamily': 'lpc4000', 'CategoryCPUCore': 'cm4'}},
 		{'display': 'LPC4300', 'id': 'lpc4300', 'data': [{'url': 'http://www.nxp.com/parametrics/psdata/?p=1&s=0&c=&rpp=99999&fs=0&sc=&so=&es=&type=initial&i=1403790133078'}], 'custom': {'CategoryDeviceTopFamily': 'lpc4300', 'CategoryCPUCore': 'cm4'}},
 		{'display': 'LPC54100', 'id': 'lpc54100', 'data': [{'url': 'http://www.nxp.com/parametrics/psdata/?p=1&s=0&c=&rpp=100&fs=0&sc=&so=&es=&type=initial&i=1414576688124'}], 'custom': {'CategoryDeviceTopFamily': 'lpc54100', 'CategoryCPUCore': 'cm4f'}},
-		{'display': 'LH7', 'id': 'lpc3100_200', 'data': [{'url': 'http://www.nxp.com/parametrics/psdata/?p=1&s=0&c=&rpp=99999&fs=0&sc=&so=&es=&type=initial&i=71572'}]},
-
 		# 8-/16-bit Legacy
 		{'display': 'LPC900', 'id': 'lpc900', 'data': [{'url': 'http://www.nxp.com/parametrics/psdata/?p=1&s=0&c=&rpp=100&fs=0&sc=&so=&es=&type=initial&i=71590'}], 'custom': {'CategoryDeviceTopFamily': 'lpc900', 'CategoryLegacy': 'yes'}},
 		{'display': 'LPC700', 'id': 'lpc700', 'data': [{'url': 'http://www.nxp.com/parametrics/psdata/?p=1&s=0&c=&rpp=100&fs=0&sc=&so=&es=&type=initial&i=71592'}], 'custom': {'CategoryDeviceTopFamily': 'lpc700', 'CategoryLegacy': 'yes'}},
